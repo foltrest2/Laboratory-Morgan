@@ -1,22 +1,35 @@
 package model;
 import java.util.ArrayList;
 public class Ship {
-	
+
+	//	attributes
+
+	private String name;
+
 	//Constants
-	
+
 	public static final int MAXWEIGHT = 28000;
 	public static final int MINWEIGHT = 12000;
 	public static final int MINLOAD = 2;
-	
+	public static final String EL_PIRATA = "El pirata";
+
 	//Relations
-	
+
 	public ArrayList<Load> capacity;
-	
+
 	//Methods
-	
+
 	public Ship (){	
-	capacity = new ArrayList<Load>();	
+		this.name = EL_PIRATA;
+		capacity = new ArrayList<Load>();	
 	}
+	/**
+	 *This is method check if a new load can be added or not depend of the total weight in the ship.
+	 *
+	 *<b>pre:</b> <br>
+	 *
+	 *<b>post:</b> Returns add is a boolean when decide if a new load can be added. <br>
+	 */
 	public boolean addLoad() {
 		boolean x=true;
 		if(calculateTotalWeight()>MAXWEIGHT) {
@@ -24,6 +37,16 @@ public class Ship {
 		}
 		return x;
 	}
+	/**
+	 *This is method calculate the historical kilograms sent by the client.
+	 *
+	 *<b>pre:</b>A client was created as minimum. <br>
+	 *<b>pre:</b>The client has successfully submitted a load at least. <br>
+	 *
+	 *@param name the name of client  
+	 *
+	 *<b>post:</b> Returns result of calculate the historical kilograms per client. <br>
+	 */
 	public int accumulateKgSentByClient(String name) {
 		int accumulate=0;
 		if(capacity!=null) {
@@ -35,6 +58,13 @@ public class Ship {
 		}
 		return accumulate;
 	} 
+	/**
+	 *This is method calculate the total weight in the ship.
+	 *
+	 *<b>pre:</b>A load was created as minimum (the array is not null). <br>
+	 *
+	 *<b>post:</b> Returns totalWeight int is the total weight added to the ship. <br>
+	 */
 	public int calculateTotalWeight(){
 		int totalWeight = 0;
 		if(capacity!=null) {
@@ -46,15 +76,36 @@ public class Ship {
 		}
 		return totalWeight;
 	}
+	/**
+	 * This method unload the ship 
+	 * 
+	 * <b>pre:</b> <br>
+	 *
+	 *<b>post:</b> clear the array of loads. <br>
+	 */
 	public void unloadShipAutomatly() {
 		capacity.clear();
 	}
+	/**
+	 *This is method unload the ship.
+	 *
+	 *<b>pre:</b> <br>
+	 *
+	 *<b>post:</b> Returns message if the notifying the ship was unload. <br>
+	 */
 	public String unloadShip(){
 		String message="";
 		capacity.clear();
 		message="The ship was succesfull unloaded";
 		return message;
 	}	
+	/**
+	 *This is method check if the ship can sail or not depend of the conditions.
+	 *
+	 *<b>pre:</b>A load of a client was created as minimum. <br>
+	 *
+	 *<b>post:</b> Returns toSail as boolean to know if the ship can sail or not. <br>
+	 */
 	public boolean shipSail() {
 		boolean toSail;
 		if((calculateTotalWeight()>= MINWEIGHT || capacity.size()>=MINLOAD) && verifySanityRule()==true && calculateTotalWeight()<=MAXWEIGHT)
@@ -64,6 +115,13 @@ public class Ship {
 
 		return toSail;
 	}
+	/**
+	 *This is method check the sanity conditions of the loads.
+	 *
+	 *<b>pre:</b>A load of client was created as minimum. <br>
+	 *
+	 *<b>post:</b> Returns correct as boolean if the loads accomplish with the sanity conditions. <br>
+	 */
 	public boolean verifySanityRule() {
 		boolean correct = true;
 		for (int i = 0; i < capacity.size(); i++) {
