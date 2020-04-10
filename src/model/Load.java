@@ -1,48 +1,48 @@
 package model;
 
-public class Load {
-	
+public class Load{
+
 	//attributes
-	
+
 	private int boxes;
-	private int weight;
-	private int loadType;
+	private int boxesWeight;
+	private String loadType;
+	private String owner;
 	
 	//Constants
 	
-	public static final int DANGEROUS = 390000;
-	public static final int PERISHABLE = 250000;
-	public static final int NOTPERISHABLE = 80000;
-	
+	public final static int DANGEROUS = 390000;
+	public final static int PERISHABLE = 250000;
+	public final static int NOTPERISHABLE = 80000;
+
 	//Methods
-	
-	public Load(int pBoxes, int pWeight, int pLoadType){
-		boxes = pBoxes;
-		weight = pWeight;
-		loadType = pLoadType;
+
+	public Load(int boxes, int boxesWeight, String loadType, String owner){
+		this.boxes = boxes;
+		this.boxesWeight = boxesWeight;
+		this.loadType = loadType;
+		this.owner = owner;
+
 	}
-	
+	public void setBoxes(int boxes){
+		this.boxes = boxes;
+	}
 	public int getBoxes(){
 		return boxes;
 	}
-	
-	public void setBoxes(int pBoxes){
-		this.boxes = pBoxes;
+	public void setBoxesWeight(int boxesWeight){
+		this.boxesWeight = boxesWeight;
 	}
-	
-	public int getWeight(){
-		return weight;
+	public int getBoxesWeight(){
+		return boxesWeight;
 	}
-	
-	public void setWeight(int pWeight){
-		this.weight = pWeight;
+	public void setLoadType(String loadType){
+		this.loadType = loadType;
 	}
-	
-	public int getLoadType(){
+	public String getLoadType(){
 		return loadType;
 	}
-	
-	public void setLoadType(int pLoadType){
-		this.loadType = pLoadType;
+	public String getOwner() {
+		return owner;
 	}
 }
